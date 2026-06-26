@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Emefa Capo — Data Analyst</title>
+<meta name="description" content="Emefa Capo — Data Analyst en alternance. Je transforme des données désordonnées en décisions lisibles. Python, SQL, Power BI." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+
+    --paper:#F4F3EE;
+    --card:#FCFBF8;
+    --ink:#15171B;
+    --ink-2:#54575E;
+    --ink-3:#8A8D94;
+    --line:rgba(21,23,27,.13);
+    --line-2:rgba(21,23,27,.06);
+
+    --brand:#5B43F2;
+    --teal:#0E9C8C;
+    --blue:#2D6CDF;
+    --amber:#DD8A00;
+
+    --maxw:1180px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);background:var(--paper);color:var(--ink);
+    -webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;
+    background-image:
+      linear-gradient(var(--line-2) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line-2) 1px,transparent 1px);
+    background-size:34px 34px;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--brand);color:#fff}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+  .mono{font-family:var(--mono)}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-3);display:inline-flex;align-items:center;gap:10px}
+  .kick::before{content:"";width:22px;height:1px;background:var(--ink-3)}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
+    background:color-mix(in srgb,var(--paper) 82%,transparent);
+    border-bottom:1px solid var(--line-2)}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:16px clamp(20px,4vw,40px);
+    display:flex;align-items:center;justify-content:space-between}
+  .brandmark{font-family:var(--serif);font-weight:500;font-size:19px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  .brandmark .sq{width:11px;height:11px;border-radius:3px;background:var(--brand);
+    box-shadow:6px 0 0 -2px var(--teal),12px 0 0 -4px var(--amber)}
+  .nav-links{display:flex;gap:30px;font-size:13.5px;color:var(--ink-2)}
+  .nav-links a{transition:color .2s}.nav-links a:hover{color:var(--ink)}
+  .nav-cta{font-family:var(--mono);font-size:12px;border:1px solid var(--ink);border-radius:30px;
+    padding:9px 18px;transition:all .25s var(--ease)}
+  .nav-cta:hover{background:var(--ink);color:var(--paper)}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,64px);
+    align-items:center;padding:clamp(40px,7vh,84px) 0 clamp(34px,5vh,60px)}
+  .chip{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;
+    letter-spacing:.05em;color:var(--ink-2);border:1px solid var(--line);border-radius:30px;
+    padding:7px 14px;background:var(--card);margin-bottom:26px}
+  .chip .pulse{width:8px;height:8px;border-radius:50%;background:var(--teal);position:relative}
+  .chip .pulse::after{content:"";position:absolute;inset:-4px;border-radius:50%;
+    border:1px solid var(--teal);animation:pulse 2s ease-out infinite}
+  @keyframes pulse{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.6vw,68px);
+    line-height:1.04;letter-spacing:-.02em;margin-bottom:22px}
+  .hero h1 em{font-style:italic;color:var(--brand)}
+  .hero .name{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--ink-2);margin-bottom:18px}
+  .hero .name b{color:var(--ink);font-weight:500}
+  .hero .lede{font-size:15.5px;color:var(--ink-2);max-width:430px;margin-bottom:34px}
+  .actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;
+    padding:13px 22px;border-radius:8px;border:1px solid var(--ink);transition:all .25s var(--ease)}
+  .btn.primary{background:var(--ink);color:var(--paper)}
+  .btn.primary:hover{background:var(--brand);border-color:var(--brand)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  .icns{display:flex;gap:8px;margin-left:4px}
+  .icns a{width:42px;height:42px;border:1px solid var(--line);border-radius:8px;display:grid;
+    place-items:center;color:var(--ink-2);transition:all .25s var(--ease)}
+  .icns a:hover{color:var(--ink);border-color:var(--ink);transform:translateY(-2px)}
+
+  .viz{position:relative;border:1px solid var(--line);border-radius:16px;background:var(--card);
+    aspect-ratio:1/.92;overflow:hidden;box-shadow:0 30px 60px -40px rgba(20,20,40,.35)}
+  .viz canvas{width:100%;height:100%;display:block}
+  .viz .vtag{position:absolute;top:14px;left:16px;font-family:var(--mono);font-size:10.5px;
+    letter-spacing:.12em;color:var(--ink-3);text-transform:uppercase}
+  .viz .vtag b{color:var(--ink-2);font-weight:500}
+  .viz .vrun{position:absolute;top:14px;right:16px;font-family:var(--mono);font-size:10.5px;color:var(--ink-3)}
+
+  /* ---------- SECTION ---------- */
+  section{padding:clamp(54px,9vh,104px) 0}
+  .sec-head{margin-bottom:48px;max-width:620px}
+  .sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.6vw,42px);
+    line-height:1.1;letter-spacing:-.015em;margin-top:16px}
+
+  /* ---------- APPROCHE ---------- */
+  .pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line)}
+  .step{padding:26px 22px 28px;border-right:1px solid var(--line);position:relative;transition:background .3s}
+  .step:last-child{border-right:none}
+  .step:hover{background:var(--card)}
+  .step .n{font-family:var(--mono);font-size:12px;color:var(--brand)}
+  .step h3{font-family:var(--serif);font-weight:500;font-size:21px;margin:14px 0 10px;letter-spacing:-.01em}
+  .step p{font-size:13px;color:var(--ink-2);line-height:1.6}
+  .step .bar{position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--brand);transition:width .5s var(--ease)}
+  .step:hover .bar{width:100%}
+  @media(max-width:860px){.pipe{grid-template-columns:1fr 1fr}.step{border-bottom:1px solid var(--line)}
+    .step:nth-child(2n){border-right:none}}
+  @media(max-width:520px){.pipe{grid-template-columns:1fr}.step{border-right:none}}
+
+  /* ---------- PROJETS ---------- */
+  .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .pcard{border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+  .pcard:hover{transform:translateY(-5px);box-shadow:0 28px 50px -34px rgba(20,20,40,.4)}
+  .pcard .top{height:4px;width:100%}
+  .pcard .body{padding:24px;display:flex;flex-direction:column;flex:1}
+  .pcard .dom{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:8px;margin-bottom:16px}
+  .pcard .dom .dt{width:8px;height:8px;border-radius:50%}
+  .pcard h3{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;letter-spacing:-.01em;margin-bottom:12px}
+  .thumb{height:96px;border-radius:8px;background:var(--paper);border:1px solid var(--line-2);
+    margin-bottom:18px;overflow:hidden;position:relative}
+  .thumb svg{width:100%;height:100%}
+  .meta{font-family:var(--mono);font-size:12px;color:var(--ink-2);line-height:2;border-top:1px solid var(--line-2);padding-top:14px;margin-top:auto}
+  .meta .row{display:flex;justify-content:space-between;gap:12px}
+  .meta .row span:first-child{color:var(--ink-3)}
+  .plinks{display:flex;gap:14px;margin-top:18px;font-family:var(--mono);font-size:12.5px;align-items:center}
+  .plinks a{display:inline-flex;align-items:center;gap:6px;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px;transition:border-color .2s}
+  .plinks a:hover{border-color:var(--ink)}
+  .plinks a[aria-disabled]{color:var(--ink-3);border-color:transparent;pointer-events:none}
+  .pq{font-size:13.5px;color:var(--ink-2);line-height:1.6;margin-bottom:18px}
+  @media(max-width:860px){.projects{grid-template-columns:1fr}}
+
+  /* ---------- COMPETENCES ---------- */
+  .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+  .skcol{padding:28px 26px;border-right:1px solid var(--line)}
+  .skcol:last-child{border-right:none}
+  .skcol h4{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:20px}
+  .skcol ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+  .skcol li{font-size:14px;display:flex;align-items:baseline;gap:12px}
+  .skcol li .b{font-family:var(--mono);font-size:11px;color:var(--brand)}
+  .skcol li b{font-weight:500}
+  .skcol li small{color:var(--ink-3);font-size:12px;display:block}
+  @media(max-width:760px){.skills{grid-template-columns:1fr}.skcol{border-right:none;border-bottom:1px solid var(--line)}.skcol:last-child{border-bottom:none}}
+
+  /* ---------- PARCOURS ---------- */
+  .parc-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(30px,5vw,70px);align-items:start}
+  .timeline{position:relative;border-left:2px solid var(--line);margin-left:6px;padding-left:34px;display:flex;flex-direction:column;gap:30px}
+  .tl{position:relative}
+  .tl::before{content:"";position:absolute;left:-43px;top:4px;width:14px;height:14px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--ink)}
+  .tl.now::before{background:var(--brand);border-color:var(--brand)}
+  .tl.future::before{background:var(--paper);border-color:var(--teal);border-style:dashed}
+  .tl .yr{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+  .tl h4{font-family:var(--serif);font-weight:500;font-size:19px;margin:5px 0 4px;letter-spacing:-.01em}
+  .tl p{font-size:13.5px;color:var(--ink-2);max-width:560px}
+  .tl .tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--brand);border:1px solid var(--brand);border-radius:20px;padding:2px 10px;margin-top:8px}
+  .factbox{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:26px;position:sticky;top:96px}
+  .factbox h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:18px}
+  .fact{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line-2);font-size:13.5px}
+  .fact:last-child{border-bottom:none}.fact span:first-child{color:var(--ink-2)}
+  .fact b{font-family:var(--mono);font-weight:500;text-align:right}
+  @media(max-width:860px){.parc-grid{grid-template-columns:1fr}.factbox{position:static}}
+
+  /* ---------- CONTACT ---------- */
+  .cta-final{border:1px solid var(--line);border-radius:20px;background:var(--card);
+    padding:clamp(40px,6vw,72px);text-align:center;position:relative;overflow:hidden}
+  .cta-final h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.6vw,52px);
+    line-height:1.08;letter-spacing:-.02em;margin-bottom:20px}
+  .cta-final h2 em{font-style:italic;color:var(--brand)}
+  .cta-final p{color:var(--ink-2);max-width:480px;margin:0 auto 32px;font-size:15px}
+  .cta-final .actions{justify-content:center}
+  .dots{position:absolute;inset:0;pointer-events:none;opacity:.5}
+
+  footer{border-top:1px solid var(--line);margin-top:8px}
+  .foot{max-width:var(--maxw);margin:0 auto;padding:28px clamp(20px,4vw,40px);
+    display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+  .foot a:hover{color:var(--ink)}
+
+  .rv{opacity:1;transform:none}
+  .js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .js .rv.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.chip .pulse::after{animation:none}}
+  @media(max-width:860px){.hero{grid-template-columns:1fr}.viz{max-width:460px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="#top" class="brandmark"><span class="sq"></span>Emefa Capo</a>
+    <div class="nav-links">
+      <a href="#approche">Approche</a>
+      <a href="#projets">Projets</a>
+      <a href="#parcours">Parcours</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="cv-emefa-capo.pdf" class="nav-cta" download>CV ↓</a>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+  <header class="hero">
+    <div>
+      <div class="chip"><span class="pulse"></span>Disponible en alternance · Sept. 2026</div>
+      <div class="name"><b>Emefa Capo</b> — Data Analyst · Paris</div>
+      <h1>Je transforme des données <em>désordonnées</em> en décisions lisibles.</h1>
+      <p class="lede">Étudiante en Bachelor Intelligence Artificielle &amp; Big Data. Je collecte, nettoie et analyse des données métiers pour en extraire des indicateurs et des tableaux de bord qui guident l'action.</p>
+      <div class="actions">
+        <a href="#projets" class="btn primary">Voir les projets →</a>
+        <a href="cv-emefa-capo.pdf" class="btn ghost" download>Télécharger le CV</a>
+        <div class="icns">
+          <a href="https://linkedin.com/in/emefa-capo" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.5 8.65 22 10.6 22 14v7h-4v-6.2c0-1.48-.03-3.38-2.06-3.38-2.06 0-2.38 1.6-2.38 3.27V21H9V9Z"/></svg>
+          </a>
+          <a href="https://github.com/ilocapo" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="viz">
+      <div class="vtag">Échantillon : <b>180 obs.</b> · 3 segments</div>
+      <div class="vrun mono" id="vrun">clustering…</div>
+      <canvas id="scatter"></canvas>
+    </div>
+  </header>
+</div>
+
+<section id="approche">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">Comment je travaille</span>
+      <h2>De la donnée brute à la décision, une méthode en cinq temps.</h2>
+    </div>
+    <div class="pipe rv">
+      <div class="step"><div class="bar"></div><div class="n">01</div><h3>Collecter</h3><p>Extraire les données des systèmes métiers : SQL, fichiers, APIs. Centraliser proprement la source.</p></div>
+      <div class="step"><div class="bar"></div><div class="n">02</div><h3>Structurer</h3><p>Nettoyer, dédupliquer, normaliser les formats. Repérer et documenter les anomalies.</p></div>
+      <div class="step"><div class="bar"></div><div class="n">03</div><h3>Analyser</h3><p>Explorer, croiser, segmenter, tester. Faire parler les chiffres avec Python et les stats.</p></div>
+      <div class="step"><div class="bar"></div><div class="n">04</div><h3>Visualiser</h3><p>Construire des tableaux de bord et des indicateurs clairs sous Power BI. Rendre lisible.</p></div>
+      <div class="step"><div class="bar"></div><div class="n">05</div><h3>Décider</h3><p>Restituer des recommandations concrètes, hiérarchisées, qui orientent l'action.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="projets">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">Études de cas</span>
+      <h2>Trois domaines, une même démarche : trouver le signal.</h2>
+    </div>
+    <div class="projects">
+
+      <article class="pcard rv">
+        <div class="top" style="background:var(--teal)"></div>
+        <div class="body">
+          <div class="dom" style="color:var(--teal)"><span class="dt" style="background:var(--teal)"></span>Santé</div>
+          <h3>Prédire le risque de réhospitalisation</h3>
+          <p class="pq">Quels patients risquent de revenir à l'hôpital sous 30 jours, et sur quels signaux le détecter tôt ?</p>
+          <div class="thumb">
+            <svg viewBox="0 0 240 96" preserveAspectRatio="none">
+              <g stroke="rgba(21,23,27,.08)"><line x1="0" y1="24" x2="240" y2="24"/><line x1="0" y1="48" x2="240" y2="48"/><line x1="0" y1="72" x2="240" y2="72"/></g>
+              <path d="M0,78 C40,70 60,40 100,44 C140,48 160,18 200,22 L240,16" fill="none" stroke="var(--teal)" stroke-width="2.5"/>
+              <path d="M0,78 C40,70 60,40 100,44 C140,48 160,18 200,22 L240,16 L240,96 L0,96 Z" fill="var(--teal)" opacity=".09"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="row"><span>Données</span><span>~30k dossiers</span></div>
+            <div class="row"><span>Méthode</span><span>EDA · scoring</span></div>
+            <div class="row"><span>Outils</span><span>Python · SQL · Power BI</span></div>
+          </div>
+          <div class="plinks">
+            <a aria-disabled href="#">notebook ↗</a>
+            <a aria-disabled href="#">github ↗</a>
+            <span class="mono" style="color:var(--ink-3);font-size:11px;margin-left:auto">en cours</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pcard rv">
+        <div class="top" style="background:var(--blue)"></div>
+        <div class="body">
+          <div class="dom" style="color:var(--blue)"><span class="dt" style="background:var(--blue)"></span>Finance</div>
+          <h3>Évaluer le risque de défaut de crédit</h3>
+          <p class="pq">Parmi les demandes de prêt, lesquelles présentent un risque réel — et comment le segmenter ?</p>
+          <div class="thumb">
+            <svg viewBox="0 0 240 96">
+              <g stroke="rgba(21,23,27,.08)"><line x1="0" y1="72" x2="240" y2="72"/></g>
+              <g fill="var(--blue)">
+                <rect x="18" y="52" width="20" height="20" rx="2" opacity=".4"/>
+                <rect x="50" y="40" width="20" height="32" rx="2" opacity=".55"/>
+                <rect x="82" y="26" width="20" height="46" rx="2" opacity=".75"/>
+                <rect x="114" y="18" width="20" height="54" rx="2"/>
+                <rect x="146" y="30" width="20" height="42" rx="2" opacity=".75"/>
+                <rect x="178" y="46" width="20" height="26" rx="2" opacity=".55"/>
+                <rect x="210" y="58" width="20" height="14" rx="2" opacity=".4"/>
+              </g>
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="row"><span>Données</span><span>~40k demandes</span></div>
+            <div class="row"><span>Méthode</span><span>features · scoring</span></div>
+            <div class="row"><span>Outils</span><span>Python · SQL</span></div>
+          </div>
+          <div class="plinks">
+            <a aria-disabled href="#">notebook ↗</a>
+            <a aria-disabled href="#">github ↗</a>
+            <span class="mono" style="color:var(--ink-3);font-size:11px;margin-left:auto">en cours</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pcard rv">
+        <div class="top" style="background:var(--amber)"></div>
+        <div class="body">
+          <div class="dom" style="color:var(--amber)"><span class="dt" style="background:var(--amber)"></span>Marketing</div>
+          <h3>Comprendre la conversion client</h3>
+          <p class="pq">Quels leviers font passer un visiteur à l'achat, et où l'entonnoir perd-il le plus de monde ?</p>
+          <div class="thumb">
+            <svg viewBox="0 0 240 96">
+              <g fill="var(--amber)">
+                <rect x="20" y="14" width="200" height="16" rx="3"/>
+                <rect x="44" y="36" width="152" height="16" rx="3" opacity=".75"/>
+                <rect x="70" y="58" width="100" height="16" rx="3" opacity=".55"/>
+                <rect x="96" y="80" width="48" height="12" rx="3" opacity=".4"/>
+              </g>
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="row"><span>Données</span><span>~50k sessions</span></div>
+            <div class="row"><span>Méthode</span><span>RFM · cohortes</span></div>
+            <div class="row"><span>Outils</span><span>Python · Power BI</span></div>
+          </div>
+          <div class="plinks">
+            <a aria-disabled href="#">notebook ↗</a>
+            <a aria-disabled href="#">github ↗</a>
+            <span class="mono" style="color:var(--ink-3);font-size:11px;margin-left:auto">en cours</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="competences">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">Boîte à outils</span>
+      <h2>Une double compétence : analyse technique et restitution business.</h2>
+    </div>
+    <div class="skills rv">
+      <div class="skcol">
+        <h4>Data &amp; Analyse</h4>
+        <ul>
+          <li><span class="b">›</span><span><b>SQL</b><small>Requêtage avancé, jointures, bases relationnelles</small></span></li>
+          <li><span class="b">›</span><span><b>Python</b><small>Pandas, NumPy, nettoyage &amp; exploration</small></span></li>
+          <li><span class="b">›</span><span><b>Statistiques</b><small>Méthodes appliquées, segmentation</small></span></li>
+        </ul>
+      </div>
+      <div class="skcol">
+        <h4>BI &amp; Reporting</h4>
+        <ul>
+          <li><span class="b">›</span><span><b>Power BI</b><small>Data modeling, DAX, Power Query</small></span></li>
+          <li><span class="b">›</span><span><b>Excel avancé</b><small>TCD, formules, recherche</small></span></li>
+          <li><span class="b">›</span><span><b>Data Studio</b><small>Tableaux de bord &amp; indicateurs</small></span></li>
+        </ul>
+      </div>
+      <div class="skcol">
+        <h4>Automatisation</h4>
+        <ul>
+          <li><span class="b">›</span><span><b>Scripts Python</b><small>Industrialisation de processus</small></span></li>
+          <li><span class="b">›</span><span><b>Backend PHP</b><small>Réception &amp; consolidation de données</small></span></li>
+          <li><span class="b">›</span><span><b>Modélisation</b><small>Conception relationnelle, intégrité</small></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="parcours">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">Trajectoire</span>
+      <h2>Du développement vers la data — cap sur l'IA pour la santé.</h2>
+    </div>
+    <div class="parc-grid">
+      <div class="timeline rv">
+        <div class="tl future">
+          <div class="yr">Après le master</div>
+          <h4>IA pour la recherche &amp; le médical</h4>
+          <p>Objectif long terme : appliquer le machine learning aux problématiques de santé et de recherche.</p>
+          <span class="tag">Cap</span>
+        </div>
+        <div class="tl now">
+          <div class="yr">Depuis 2025 · ESGI Paris</div>
+          <h4>Bachelor Intelligence Artificielle &amp; Big Data</h4>
+          <p>Spécialisation décisionnel, statistiques et mathématiques appliquées, machine learning, architectures cloud, Spark, Scala.</p>
+        </div>
+        <div class="tl">
+          <div class="yr">2024 — 2025 · NYX Corp</div>
+          <h4>Alternante — Backend &amp; intégration de données</h4>
+          <p>Industrialisation d'un processus de déploiement, modules backend PHP pour la fiabilité des données, automatisation Python, modélisation et requêtage SQL.</p>
+        </div>
+        <div class="tl">
+          <div class="yr">2023 — 2024</div>
+          <h4>Développement : EPSI Lyon &amp; IT-Academy</h4>
+          <p>Bases solides en algorithmique Python, modélisation de bases de données et requêtage avancé. Prépa informatique à Epitech Bénin (2023).</p>
+        </div>
+      </div>
+
+      <aside class="factbox rv">
+        <h4>En bref</h4>
+        <div class="fact"><span>Recherche</span><b>Alternance Data Analyst</b></div>
+        <div class="fact"><span>Rythme</span><b>3 sem. / 1 sem.</b></div>
+        <div class="fact"><span>Disponibilité</span><b>Sept. 2026</b></div>
+        <div class="fact"><span>Localisation</span><b>Paris, IDF</b></div>
+        <div class="fact"><span>Langues</span><b>FR natif · EN pro</b></div>
+        <div class="fact"><span>Stack cœur</span><b>Python · SQL · Power BI</b></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta-final rv">
+      <svg class="dots" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="var(--brand)">
+          <circle cx="60" cy="40" r="2.5" opacity=".5"/><circle cx="120" cy="150" r="2" opacity=".3"/>
+          <circle cx="520" cy="60" r="2.5" opacity=".4"/><circle cx="470" cy="160" r="2" opacity=".3"/>
+          <circle cx="300" cy="30" r="2" opacity=".25"/><circle cx="560" cy="120" r="2" opacity=".35"/>
+          <circle cx="40" cy="120" r="2" opacity=".3"/>
+        </g>
+      </svg>
+      <span class="kick" style="justify-content:center">Contact</span>
+      <h2 style="margin-top:16px">Construisons quelque chose avec <em>vos données</em>.</h2>
+      <p>Je cherche une alternance Data Analyst à partir de septembre 2026. Parlons de vos enjeux data — je réponds vite.</p>
+      <div class="actions">
+        <a href="mailto:emefa.capo@gmail.com" class="btn primary">emefa.capo@gmail.com</a>
+        <a href="https://linkedin.com/in/emefa-capo" target="_blank" rel="noopener" class="btn ghost">LinkedIn ↗</a>
+        <a href="cv-emefa-capo.pdf" class="btn ghost" download>CV ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot">
+    <span>© 2026 Emefa Capo</span>
+    <span>Paris · Data Analyst</span>
+    <span><a href="https://github.com/ilocapo" target="_blank" rel="noopener">github</a> · <a href="https://linkedin.com/in/emefa-capo" target="_blank" rel="noopener">linkedin</a></span>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.14});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  (function(){
+    const cv = document.getElementById('scatter');
+    const ctx = cv.getContext('2d');
+    const runEl = document.getElementById('vrun');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const css = getComputedStyle(document.documentElement);
+    const COLORS = [css.getPropertyValue('--teal').trim(), css.getPropertyValue('--blue').trim(), css.getPropertyValue('--amber').trim()];
+    const LABELS = ['Santé','Finance','Marketing'];
+    const N = 180;
+    let W=0,H=0,dpr=1, pts=[], cents=[], t0=null, done=false;
+
+    function size(){
+      const r = cv.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio||1, 2);
+      W=r.width; H=r.height;
+      cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    const rand=(a,b)=>a+Math.random()*(b-a);
+    function gauss(){let u=0,v=0;while(!u)u=Math.random();while(!v)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+
+    function build(){
+      size();
+      cents = [{x:W*0.30,y:H*0.36},{x:W*0.68,y:H*0.30},{x:W*0.52,y:H*0.70}];
+      pts = [];
+      for(let i=0;i<N;i++){
+        const c=i%3, spread=Math.min(W,H)*0.085;
+        pts.push({
+          sx:rand(W*0.08,W*0.92), sy:rand(H*0.10,H*0.92),
+          tx:cents[c].x+gauss()*spread, ty:cents[c].y+gauss()*spread,
+          c, r:rand(2.1,3.6), ph:Math.random()*Math.PI*2, sp:rand(.4,1)
+        });
+      }
+    }
+    function hexA(hex,a){
+      hex=hex.replace('#','');
+      if(hex.length===3)hex=hex.split('').map(c=>c+c).join('');
+      if(hex.length<6) return `rgba(21,23,27,${a})`;
+      const r=parseInt(hex.substr(0,2),16),g=parseInt(hex.substr(2,2),16),b=parseInt(hex.substr(4,2),16);
+      return `rgba(${r},${g},${b},${a})`;
+    }
+    function grid(){
+      ctx.strokeStyle='rgba(21,23,27,.05)'; ctx.lineWidth=1;
+      const g=Math.max(W,H)/12;
+      for(let x=g;x<W;x+=g){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+      for(let y=g;y<H;y+=g){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+      ctx.fillStyle='rgba(21,23,27,.22)'; ctx.fillRect(14,H-14,18,1); ctx.fillRect(14,H-32,1,18);
+    }
+    const easeOut=t=>1-Math.pow(1-t,3);
+
+    function frame(ts){
+      if(t0===null)t0=ts;
+      const p=Math.min((ts-t0)/2000,1), e=easeOut(p);
+      ctx.clearRect(0,0,W,H); grid();
+
+      if(e>0.55){
+        cents.forEach((c,i)=>{
+          const a=(e-0.55)/0.45, R=Math.min(W,H)*0.18;
+          const grd=ctx.createRadialGradient(c.x,c.y,2,c.x,c.y,R);
+          grd.addColorStop(0,hexA(COLORS[i],0.10*a)); grd.addColorStop(1,hexA(COLORS[i],0));
+          ctx.fillStyle=grd; ctx.beginPath(); ctx.arc(c.x,c.y,R,0,7); ctx.fill();
+        });
+      }
+      const alive=(p>=1);
+      pts.forEach(pt=>{
+        let x=pt.sx+(pt.tx-pt.sx)*e, y=pt.sy+(pt.ty-pt.sy)*e;
+        if(alive && !reduce){ x+=Math.sin(ts*0.0006*pt.sp+pt.ph)*3.2; y+=Math.cos(ts*0.0006*pt.sp+pt.ph*1.3)*3.2; }
+        const c = e<0.25 ? hexA('zzz',0.30) : hexA(COLORS[pt.c],0.92);
+        ctx.beginPath(); ctx.fillStyle=c; ctx.arc(x,y,pt.r,0,7); ctx.fill();
+      });
+      if(e>0.7){
+        const a=(e-0.7)/0.3;
+        ctx.font='500 11px "JetBrains Mono",monospace'; ctx.textAlign='center';
+        cents.forEach((c,i)=>{ ctx.fillStyle=hexA(COLORS[i],a); ctx.fillText(LABELS[i], c.x, c.y-Math.min(W,H)*0.135); });
+      }
+      if(p>=1 && !done){ done=true; runEl.textContent='✓ 3 segments'; }
+      if(reduce && p>=1) return;
+      requestAnimationFrame(frame);
+    }
+    function start(){
+      build(); t0=null; done=false;
+      runEl.textContent = reduce ? '✓ 3 segments' : 'clustering…';
+      if(reduce){ t0=performance.now()-2000; }
+      requestAnimationFrame(frame);
+    }
+    let rt; addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(start,200);});
+    start();
+  })();
+</script>
+</body>
+</html>
